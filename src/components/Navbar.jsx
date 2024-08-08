@@ -1,6 +1,11 @@
-import quip from "../images/quip.svg"
+import { signOut } from "firebase/auth";
+import quip from "../images/quip.svg";
+import { Auth } from "../config/firebase";
 
 const Navbar = () => {
+  async function signout() {
+    await signOut(Auth);
+  }
   return (
     <div className="flex justify-center items-center">
       <div className="wrapper fixed top-0 z-10 navbar bg-base-100">
@@ -10,7 +15,7 @@ const Navbar = () => {
         </div>
         <div className="flex-none">
           <ul className="menu menu-horizontal px-1">
-            <button className="btn text-base">Logout</button>
+            <button onClick={signout} className="btn text-base">Logout</button>
           </ul>
         </div>
       </div>

@@ -1,14 +1,17 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-const firebaseConfig = {
-  apiKey: "AIzaSyBJG-lr1f_te7hnWG59vhnlSmTqGlIWnLA",
-  authDomain: "quip-dc230.firebaseapp.com",
-  projectId: "quip-dc230",
-  storageBucket: "quip-dc230.appspot.com",
-  messagingSenderId: "616135368665",
-  appId: "1:616135368665:web:05525e8e37e31c35b3c3c8"
-};
+import { getFirestore } from "firebase/firestore";
 
-// Initialize Firebase
+
+const firebaseConfig = {
+  apiKey: import.meta.env.VITE_REACT_APP_API_KEY,
+  authDomain: import.meta.env.VITE_REACT_APP_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_REACT_APP_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_REACT_APP_MSG_SENDER_ID,
+  appId: import.meta.env.VITE_REACT_APP_APP_ID
+}
+
 export const app = initializeApp(firebaseConfig);
-export const auth = getAuth();
+export const Auth = getAuth();
+export const db = getFirestore(app);

@@ -1,31 +1,20 @@
-const Messages = () => {
+import { FaUserCircle } from "react-icons/fa";
+import { userAuth } from "../context/AuthContext";
+
+const Messages = (props) => {
+    const { text, uid, username, keyId } = props;
+    const { currentUser } = userAuth();
+
     return (
         <>
-            <div className="wrapper chat chat-start px-2">
+            <div key={keyId} className={`wrapper chat px-2 ${uid === currentUser.uid ? "chat-end" : "chat-start"}`}>
                 <div className="chat-image avatar">
                     <div className="w-10 rounded-full">
-                        <img
-                            alt="Tailwind CSS chat bubble component"
-                            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                        <FaUserCircle fontSize={38} color="#7480ff" />
                     </div>
                 </div>
-                <div className="chat-header">
-                    User 1
-                </div>
-                <div className="chat-bubble">You were the Chosen One!</div>
-            </div>
-            <div className="wrapper chat chat-end px-2">
-                <div className="chat-image avatar">
-                    <div className="w-10 rounded-full">
-                        <img
-                            alt="Tailwind CSS chat bubble component"
-                            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-                    </div>
-                </div>
-                <div className="chat-header">
-                    User 2
-                </div>
-                <div className="chat-bubble">I hate you!</div>
+                <div className="chat-header ml-2 mb-1 font-medium capitalize">{username}</div>
+                <div className="chat-bubble">{text}</div>
             </div>
         </>
     )
